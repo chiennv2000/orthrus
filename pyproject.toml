@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "orthrus"
+version = "0.1.0"
+description = "Memory-Efficient Parallel Token Generation via Dual-View Diffusion"
+readme = "README.md"
+requires-python = ">=3.9"
+
+authors = [
+    { name = "Chien Van Nguyen", email = "chienn@uoregon.edu" }
+]
+
+license = { text = "Apache-2.0" }
+
+dependencies = [
+    "torch>=2.10.0",
+    "transformers>=5.8.0",
+    "accelerate>=1.13.0",
+    "numpy",
+]
+
+[project.urls]
+Repository = "https://github.com/chiennv2000/orthrus"
