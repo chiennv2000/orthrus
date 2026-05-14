@@ -69,7 +69,7 @@ output_ids = model.generate(
 
 ## Citation
 
-If you find this model or architecture useful in your work, please cite our paper:
+If you find this model or architecture useful in your work, please cite our [paper](https://arxiv.org/abs/2605.12825):
 
 ```bibtex
 @misc{vannguyen2026orthrusmemoryefficientparalleltoken,
