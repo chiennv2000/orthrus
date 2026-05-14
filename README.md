@@ -68,3 +68,17 @@ output_ids = model.generate(
 ---
 
 ## Citation
+
+If you find this model or architecture useful in your work, please cite our paper:
+
+```bibtex
+@misc{vannguyen2026orthrusmemoryefficientparalleltoken,
+      title={Orthrus: Memory-Efficient Parallel Token Generation via Dual-View Diffusion}, 
+      author={Chien Van Nguyen and Chaitra Hegde and Van Cuong Pham and Ryan A. Rossi and Franck Dernoncourt and Thien Huu Nguyen},
+      year={2026},
+      eprint={2605.12825},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2605.12825}, 
+}
+```
