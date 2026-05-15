@@ -73,6 +73,20 @@ output_ids = model.generate(
 
 ---
 
+## Performance Comparison: Orthrus vs. Speculative Decoding
+
+Orthrus structurally outperforms traditional speculative decoding methods like DFlash. By natively sharing the exact same KV cache across dual views, Orthrus avoids the redundant memory overhead of draft models, resulting in significantly higher token acceptance rates and faster inference times, especially as context length scales.
+
+<p align="center">
+  <img src="assets/acceptance_length.png" width="48%" alt="Average Acceptance Length Comparison">
+  <img src="assets/long_context_benchmark.png" width="48%" alt="Long Context Generation Time Benchmark">
+</p>
+<p align="center">
+  <em><b>Left:</b> Average verified tokens per forward pass compared to EAGLE-3 and DFlash. <b>Right:</b> Simulated generation time across scaling context lengths compared to DFlash.</em>
+</p>
+
+---
+
 ## Citation
 
 If you find this model or architecture useful in your work, please cite our [paper](https://arxiv.org/abs/2605.12825):
