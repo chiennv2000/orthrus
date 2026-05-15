@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/orthrus_logo.svg" alt="Orthrus logo" width="220"/>
+  <img src="assets/orthrus_logo.svg" alt="Orthrus logo" width="30%"/>
 </p>
 
 # Orthrus: Memory-Efficient Parallel Token Generation via Dual-View Diffusion
