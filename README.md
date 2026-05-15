@@ -6,6 +6,8 @@ Official implementation and model checkpoints for **Orthrus**, a dual-architectu
   <img src="assets/orthrus.png" width="80%" alt="Orthrus Architecture">
 </p>
 
+https://github.com/user-attachments/assets/2a0b021c-e232-4ac6-bf5c-c582c422505e
+
 ## Model Zoo
  
 All models use a Qwen3 backbone and guarantee **strictly lossless generation**.
