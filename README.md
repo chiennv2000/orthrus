@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/orthrus_logo.svg" alt="Orthrus logo" width="220"/>
+</p>
+
 # Orthrus: Memory-Efficient Parallel Token Generation via Dual-View Diffusion
 
 Official implementation and model checkpoints for **Orthrus**, a dual-architecture framework that unifies the exact generation fidelity of autoregressive Large Language Models (LLMs) with the high-speed parallel token generation of diffusion models.
