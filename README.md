@@ -75,7 +75,7 @@ output_ids = model.generate(
 
 ## Performance Comparison: Orthrus vs. Speculative Decoding
 
-Orthrus structurally outperforms traditional speculative decoding methods like DFlash. By natively sharing the exact same KV cache across dual views, Orthrus avoids the redundant memory overhead of draft models, resulting in significantly higher token acceptance rates and faster inference times, especially as context length scales.
+Orthrus outperforms speculative decoding methods like EAGLE-3, DFlash. By natively sharing the exact same KV cache across dual views, Orthrus avoids the redundant memory overhead of draft models, resulting in significantly higher token acceptance rates and faster inference times, especially as context length scales.
 
 <p align="center">
   <img src="assets/acceptance_length.png" width="48%" alt="Average Acceptance Length Comparison">
@@ -83,6 +83,19 @@ Orthrus structurally outperforms traditional speculative decoding methods like D
 </p>
 <p align="center">
   <em><b>Left:</b> Average verified tokens per forward pass compared to EAGLE-3 and DFlash. <b>Right:</b> Simulated generation time across scaling context lengths compared to DFlash.</em>
+</p>
+
+---
+
+## Comparison with State-of-the-Art Diffusion Models
+
+While recent diffusion language models (dLLMs) offer parallel decoding, they often suffer from significant conditional drift and severe accuracy degradation on complex reasoning tasks. Orthrus resolves this by decoupling parallel generation from sequential constraints, establishing a new state-of-the-art for parallel generation fidelity.
+
+<p align="center">
+  <img src="assets/math500_speed.png" width="60%" alt="Throughput vs. Accuracy on MATH-500">
+</p>
+<p align="center">
+  <em><b>Throughput vs. Accuracy on MATH-500.</b> Orthrus delivers a ~6x speedup over the Qwen3-8B baseline with strictly lossless performance, whereas adaptations like Fast-dLLM-v2 suffer significant accuracy drops.</em>
 </p>
 
 ---
