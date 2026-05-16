@@ -12,6 +12,7 @@ from transformers import AutoTokenizer, TextStreamer
 from transformers.generation import GenerationMixin
 from transformers.modeling_outputs import BaseModelOutputWithPast, CausalLMOutputWithPast
 from transformers.cache_utils import Cache, DynamicCache
+from transformers.masking_utils import create_causal_mask
 
 from transformers.models.qwen3.modeling_qwen3 import (
     Qwen3RotaryEmbedding as OrthrusRotaryEmbedding,
@@ -158,7 +159,10 @@ class OrthrusAttention(Qwen3Attention):
             attn_output = fused_flex_attention(query_states, key_states, value_states, mask=flex_block_mask)
             attn_output = attn_output.transpose(1, 2)
         else:
-            attention_interface: Callable = ALL_ATTENTION_FUNCTIONS[self.config._attn_implementation]
+            attention_interface: Callable = ALL_ATTENTION_FUNCTIONS.get_interface(
+                self.config._attn_implementation, eager_attention_forward
+            )
+            
             attn_output, attn_weights = attention_interface(
                 self,
                 query_states,
@@ -291,9 +295,21 @@ class OrthrusModel(OrthrusPreTrainedModel):
                 causal_limit=causal_limit,
             )
         
+        if is_diffusion_pass or self.config._attn_implementation not in ["eager", "sdpa"]:
+            causal_mask = attention_mask
+        else:
+            causal_mask = create_causal_mask(
+                config=self.config,
+                inputs_embeds=inputs_embeds,
+                attention_mask=attention_mask,
+                past_key_values=past_key_values,
+                position_ids=position_ids,
+            )
+        
         for decoder_layer in self.layers[: self.config.num_hidden_layers]:
             hidden_states = decoder_layer(
                 hidden_states,
+                attention_mask=causal_mask,
                 position_embeddings=position_embeddings,
                 position_ids=position_ids,
                 past_key_values=past_key_values,
@@ -381,9 +397,7 @@ class OrthrusLM(OrthrusPreTrainedModel, GenerationMixin):
         use_diffusion_mode: bool = True,
         **kwargs,
     ) -> torch.LongTensor:
-        
         eos_token_id = eos_token_id or getattr(self.config, "eos_token_id", None)
-    
         if not use_diffusion_mode:
             return super().generate(
                 input_ids=input_ids,

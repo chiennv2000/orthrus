@@ -45,7 +45,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, TextStreamer
 model = AutoModelForCausalLM.from_pretrained(
     "chiennv/Orthrus-Qwen3-8B",
     dtype=torch.bfloat16, device_map="cuda",
-    attn_implementation="flash_attention_2",  # use flash_attention_4 if your system does support
+    attn_implementation="flash_attention_2",  # options: sdpa | eager | flash_attention_4
     trust_remote_code=True,
 ).eval()
 tokenizer = AutoTokenizer.from_pretrained("chiennv/Orthrus-Qwen3-8B")
