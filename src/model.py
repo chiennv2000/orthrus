@@ -381,6 +381,9 @@ class OrthrusLM(OrthrusPreTrainedModel, GenerationMixin):
         use_diffusion_mode: bool = True,
         **kwargs,
     ) -> torch.LongTensor:
+        
+        eos_token_id = eos_token_id or getattr(self.config, "eos_token_id", None)
+    
         if not use_diffusion_mode:
             return super().generate(
                 input_ids=input_ids,
@@ -391,6 +394,7 @@ class OrthrusLM(OrthrusPreTrainedModel, GenerationMixin):
                 top_p=top_p,
                 eos_token_id=eos_token_id,
                 streamer=streamer,
+                use_cache=True,
                 **kwargs,
             )
 
@@ -399,7 +403,6 @@ class OrthrusLM(OrthrusPreTrainedModel, GenerationMixin):
         max_length = max_length or (num_input_tokens + max_new_tokens)
         block_size = self.config.block_size
         mask_token_id = self.config.mask_token_id
-        eos_token_id = eos_token_id or getattr(self.config, "eos_token_id", None)
         past_key_values = DynamicCache(config=self.config)
 
         output_ids = torch.full((1, max_length + block_size), mask_token_id, dtype=torch.long, device=device)
