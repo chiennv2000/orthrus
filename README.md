@@ -36,6 +36,9 @@ uv pip install flash-attn --no-build-isolation # or: pip install "flash-attn-4[c
 ---
  
 ## Quickstart
+
+> **⚡ Try instantly:** Run Orthrus directly in Colab:
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1wYUJRdURtab_4mn6-e1AdT-kTydrzZIz?usp=sharing)
  
 ```python
 import torch
