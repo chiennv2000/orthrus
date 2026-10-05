@@ -65,7 +65,7 @@ output_ids = model.generate(
 )
 ```
 
-> **Coming soon:** Native integration with [vLLM](https://github.com/vllm-project/vllm) and [SGLang](https://github.com/sgl-project/sglang) is coming soon. Stay tuned!
+> **vLLM integration:** [`integrations/vllm/`](integrations/vllm/) in this repo is an out-of-tree vLLM plugin adding native support (`trust_remote_code=False`) for the autoregressive path — install directly from this folder, no separate repo required. It also links the original in-tree PRs ([vllm-project/vllm#44792](https://github.com/vllm-project/vllm/pull/44792), [#53753](https://github.com/vllm-project/vllm/pull/53753)). Diffusion-mode decoding is available as an opt-in, experimental flag; on the tested setup it is slower than autoregressive, and its output is identical to autoregressive in float32 but can differ in bfloat16 from numerical noise — see [`integrations/vllm/docs/DIFFUSION_MODE.md`](integrations/vllm/docs/DIFFUSION_MODE.md). A standalone mirror lives at [OnePunchMonk/orthrus-vllm](https://github.com/OnePunchMonk/orthrus-vllm). SGLang integration is still outstanding.
  
 ## Key Advantages
  

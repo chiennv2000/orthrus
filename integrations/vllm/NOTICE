@@ -1,0 +1,16 @@
+orthrus-vllm
+Copyright 2026 Chien Nguyen
+
+This product includes an integration of the Orthrus model architecture:
+  Orthrus: Memory-Efficient Parallel Token Generation via Dual-View Diffusion
+  https://github.com/chiennv2000/orthrus
+  Paper: https://arxiv.org/abs/2605.12825
+  Copyright (c) 2026 Chien Nguyen, MIT License
+
+The vLLM integration code in this repository was originally developed and
+submitted upstream as:
+  - https://github.com/vllm-project/vllm/pull/44792 (autoregressive path)
+  - https://github.com/vllm-project/vllm/pull/53753 (diffusion-mode follow-up)
+Both were closed (see linked threads). This repository repackages that
+same work as an installable out-of-tree plugin per vLLM's documented
+plugin system (https://github.com/vllm-project/vllm, Apache-2.0).

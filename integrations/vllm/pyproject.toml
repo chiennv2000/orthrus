@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "orthrus-vllm"
+version = "0.1.0"
+description = "vLLM out-of-tree plugin: native support for Orthrus (dual-view diffusion decoding) checkpoints"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+authors = [{ name = "Chien Nguyen" }]
+dependencies = [
+    "vllm>=0.11.0",
+    "transformers>=4.51.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/chiennv2000/orthrus/tree/main/integrations/vllm"
+"Standalone mirror" = "https://github.com/OnePunchMonk/orthrus-vllm"
+"Original model" = "https://github.com/chiennv2000/orthrus"
+"Paper" = "https://arxiv.org/abs/2605.12825"
+"Upstream vLLM PRs (closed, see README)" = "https://github.com/vllm-project/vllm/pull/44792"
+
+[project.entry-points."vllm.general_plugins"]
+register_orthrus = "orthrus_vllm:register"
+
+[tool.setuptools.packages.find]
+where = ["src"]
